@@ -4,13 +4,14 @@ import pyperclip
 
 def transform_chunk(chunk):
     chunk = chunk.strip().replace("\n", "%0D%0A").replace(" ", "+").replace('"', '%22')
-    return f"language=&character=en-GB-ThomasNeural&text={chunk}"
+    return f"language=&charecter=en-GB-ThomasNeural&text={chunk}"
 
 def generate_chunks(text):
     chunks = []
+    chunk_size = 15000
     while text:
-        if len(text) > 5000:
-            end = text.rfind(".", 0, 5000) + 1
+        if len(text) > chunk_size:
+            end = text.rfind(".", 0, chunk_size) + 1
             chunk = text[:end]
             text = text[end:].lstrip()
         else:
