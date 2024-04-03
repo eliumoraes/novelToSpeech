@@ -13,6 +13,8 @@ After installing Python, install the required libraries using pip:
 pip install -r requirements.txt
 ```
 
+*Note: `tkinter` comes pre-installed with Python. If you encounter issues with `tkinter`, ensure your Python installation includes it by running `python -m tkinter` on Windows or `python3 -m tkinter` on Linux. On Linux, if `tkinter` is missing, install it via your package manager, e.g., `sudo apt-get install python3-tk`.*
+
 3. **How to Run**
 - Navigate to the project directory:
 ```bash
@@ -23,11 +25,6 @@ cd path/to/novelToSpeech
 python novel_to_speech_converter.py
 ```
 
-4. Contributing
+4. **Contributing**
 Contributions are welcome! Please feel free to submit pull requests or open issues to improve the project or suggest new features.
-
-
-
-
-
 
