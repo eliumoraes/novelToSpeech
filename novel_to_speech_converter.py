@@ -3,8 +3,8 @@ import tkinter as tk
 from tkinter import scrolledtext, messagebox
 
 import requests
-import chunk_service
-import tts_service
+import text_chunker
+import speech_generator
 import pygame
 import pyperclip
 
@@ -38,7 +38,7 @@ def download_file(url, filename):
         f.write(response.content)
 
 def generate_audio(chunk, chunk_size, frame, row):
-    mp3_url = tts_service.make_tts_request(chunk, chunk_size)
+    mp3_url = speech_generator.make_tts_request(chunk, chunk_size)
     if mp3_url:
         if not os.path.exists('mp3'):
             os.makedirs('mp3')
@@ -63,7 +63,7 @@ def generate_button_click(text_area, frame, chunk_size_entry):
     except ValueError:
         messagebox.showerror("Error", "Invalid chunk size. Please enter a valid number.")
         return
-    chunks = chunk_service.generate_chunks(text, default_chunk_size)
+    chunks = text_chunker.generate_chunks(text, default_chunk_size)
     display_chunks(chunks, frame)
 
 def main():
