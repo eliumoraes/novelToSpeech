@@ -1,3 +1,4 @@
+//Use node .\CrikkSpeechRequest.js to run
 import fetch from 'node-fetch';
 
 async function fetchData() {
