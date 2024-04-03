@@ -12,7 +12,8 @@ After installing Python, install the required libraries using pip:
 ```bash
 pip install -r requirements.txt
 ```
-*Note: `tkinter` comes pre-installed with Python. If you encounter issues with `tkinter`, ensure your Python installation includes it by running `python -m tkinter`. On Linux, if `tkinter` is missing, install it via your package manager, e.g., `sudo apt-get install python3-tk`.*
+
+*Note: `tkinter` comes pre-installed with Python. If you encounter issues with `tkinter`, ensure your Python installation includes it by running `python -m tkinter` on Windows or `python3 -m tkinter` on Linux. On Linux, if `tkinter` is missing, install it via your package manager, e.g., `sudo apt-get install python3-tk`.*
 
 3. **How to Run**
 - Navigate to the project directory:
