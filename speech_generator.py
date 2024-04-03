@@ -1,7 +1,7 @@
 import http.client
 from html.parser import HTMLParser
 import re
-from find_mp3_url import find_mp3_urls_in_html
+from mp3_url_finder import find_mp3_urls_in_html
 
 def make_tts_request(chunk, chunk_size):
     conn = http.client.HTTPSConnection("crikk.com")    
