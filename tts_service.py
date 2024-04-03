@@ -28,10 +28,8 @@ def make_tts_request(chunk, chunk_size):
     response = conn.getresponse()
     result = response.read()
 
-    # Define the filenames for the raw and decoded result
     raw_filename = "result_raw.html"
 
-    # Write the raw result
     with open(raw_filename, "wb") as file:
         file.write(result)
     

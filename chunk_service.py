@@ -2,11 +2,11 @@ def transform_chunk(chunk):
     chunk = chunk.strip().replace("\n", "%0D%0A").replace(" ", "+").replace('"', '%22')
     return f"{chunk}"
 
-def generate_chunks(text):
+def generate_chunks(text, default_chunk_size=5000):
     chunks = []
     while text:
-        if len(text) > 5000:
-            end = text.rfind(".", 0, 5000) + 1
+        if len(text) > default_chunk_size:
+            end = text.rfind(".", 0, default_chunk_size) + 1
             chunk = text[:end]
             text = text[end:].lstrip()
         else:

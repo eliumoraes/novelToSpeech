@@ -40,11 +40,9 @@ def download_file(url, filename):
 def generate_audio(chunk, chunk_size, frame, row):
     mp3_url = tts_service.make_tts_request(chunk, chunk_size)
     if mp3_url:
-        # Ensure mp3 directory exists
         if not os.path.exists('mp3'):
             os.makedirs('mp3')
 
-        # Filename example: 'mp3/audio_chunk_1.mp3'
         filename = f"mp3/audio_chunk_{row}.mp3"
         download_file(mp3_url, filename)
 
@@ -58,23 +56,35 @@ def play_audio_clip(file_path):
     pygame.mixer.music.load(file_path)
     pygame.mixer.music.play()
 
-def generate_button_click(text_area, frame):
+def generate_button_click(text_area, frame, chunk_size_entry):
     text = text_area.get("1.0", tk.END)
-    chunks = chunk_service.generate_chunks(text)
+    try:
+        default_chunk_size = int(chunk_size_entry.get())
+    except ValueError:
+        messagebox.showerror("Error", "Invalid chunk size. Please enter a valid number.")
+        return
+    chunks = chunk_service.generate_chunks(text, default_chunk_size)
     display_chunks(chunks, frame)
 
 def main():
     root = tk.Tk()
-    root.title("Text Chunker and TTS")  # Updated title
+    root.title("Text to speech")
 
     main_frame = tk.Frame(root)
     main_frame.pack(fill=tk.BOTH, expand=True)
+
+    chunk_size_label = tk.Label(main_frame, text="Chunk Size (default: 5000):")
+    chunk_size_label.pack(pady=(5, 0))
+
+    chunk_size_entry = tk.Entry(main_frame)
+    chunk_size_entry.insert(0, "5000")
+    chunk_size_entry.pack(pady=5)
 
     text_area = scrolledtext.ScrolledText(main_frame, height=10)
     text_area.pack(padx=10, pady=5)
 
     generate_button = tk.Button(main_frame, text="Generate Chunks",
-                                command=lambda: generate_button_click(text_area, result_frame))
+                            command=lambda: generate_button_click(text_area, result_frame, chunk_size_entry))
     generate_button.pack(pady=5)
 
     result_frame = tk.Frame(main_frame)
