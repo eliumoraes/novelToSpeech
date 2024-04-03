@@ -12,7 +12,6 @@ After installing Python, install the required libraries using pip:
 ```bash
 pip install -r requirements.txt
 ```
-(Note: The requirements.txt file will be created and listed with necessary libraries in a subsequent step.)
 
 3. **How to Run**
 - Navigate to the project directory:
