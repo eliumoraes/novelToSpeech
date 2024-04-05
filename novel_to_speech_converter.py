@@ -66,6 +66,15 @@ def generate_button_click(text_area, frame, chunk_size_entry):
     chunks = text_chunker.generate_chunks(text, default_chunk_size)
     display_chunks(chunks, frame)
 
+def clear_fields(text_area, frame):
+    # Clear the text area
+    text_area.delete('1.0', tk.END)
+    
+    # Destroy all widgets in the result frame
+    for widget in frame.winfo_children():
+        widget.destroy()
+
+
 def main():
     root = tk.Tk()
     root.title("Text to speech")
@@ -86,6 +95,12 @@ def main():
     generate_button = tk.Button(main_frame, text="Generate Chunks",
                             command=lambda: generate_button_click(text_area, result_frame, chunk_size_entry))
     generate_button.pack(pady=5)
+
+     # Add the "Clear Fields" button
+    clear_fields_button = tk.Button(main_frame, text="Clear Fields",
+                                    command=lambda: clear_fields(text_area, result_frame))
+    clear_fields_button.pack(pady=5)
+
 
     result_frame = tk.Frame(main_frame)
     result_frame.pack(fill=tk.BOTH, expand=True)
