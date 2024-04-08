@@ -1,4 +1,5 @@
 def transform_chunk(chunk):
+    chunk = chunk.encode('utf-8').decode('latin-1', 'replace')
     chunk = chunk.strip().replace("\n", "%0D%0A").replace(" ", "+").replace('"', '%22')
     return f"{chunk}"
 
